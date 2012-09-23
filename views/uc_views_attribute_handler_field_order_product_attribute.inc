@@ -23,7 +23,8 @@ class uc_views_attribute_handler_field_order_product_attribute extends views_han
       foreach ($data['attributes'] as $attribute => $option) {
         $rows[] = t('@attribute: @option', array('@attribute' => $attribute, '@option' => implode(', ', (array)$option)));
         if (count($rows)) {
-          $result = theme('item_list', $rows, NULL, 'ul', array('class' => 'product-description'));
+          //$result = theme('item_list', $rows, NULL, 'ul', array('class' => 'product-description'));
+          $result = theme('item_list', array('items' => $rows, 'title' => NULL, 'type' => 'ul', 'attributes' => array('class' => 'product-description')));
         }
       }
     }

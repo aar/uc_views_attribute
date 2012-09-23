@@ -12,8 +12,8 @@ function uc_views_attribute_views_data() {
 
   //Create a filter for each product attribute
   $result = db_query("SELECT aid, name, description FROM {uc_attributes}");
-  while($row = db_fetch_object($result)) {
-    $data['uc_order_products']['attr_'.$row->aid] = array(
+  foreach($result as $row) {
+    $data['uc_order_products']['attr_' . $row->aid] = array(
       'title' => 'Attribute: '.$row->name,
       'help' => 'Attribute desc: '.$row->description,
       'filter' => array(
