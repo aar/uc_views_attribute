@@ -44,7 +44,7 @@ function uc_views_attribute_views_data() {
 
   $data['uc_product_adjustments']['model'] = array(
     'title' => t('Model'),
-    'help' => $uc_product_adjustments['fields']['model']['description'],
+    'help' => isset($uc_product_adjustments['fields']['model']['description']) ? $uc_product_adjustments['fields']['model']['description'] : '',
     'field' => array(
       'handler' => 'views_handler_field',
     ),
