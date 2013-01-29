@@ -17,7 +17,7 @@ class uc_views_attribute_handler_field_order_product_attribute extends views_han
   function render($values) {
     $data = unserialize($values->{$this->field_alias});
     $result = "";
-    if (is_array($data['attributes'])) {
+    if (isset($data['attributes']) && is_array($data['attributes'])) {
       $result = '';
       $rows = array();
       foreach ($data['attributes'] as $attribute => $option) {
