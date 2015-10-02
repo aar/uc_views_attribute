@@ -147,7 +147,7 @@ function uc_views_attribute_views_tables_alter(&$tables) {
 function uc_get_attributes() {
   $result = db_query("SELECT aid FROM {uc_attributes} ORDER BY ordering");
   $chosen_attr = array();
-  while ($attr = db_fetch_object($result)){
+  foreach ($result as $attr){
     $chosen_attr[$attr->aid] = uc_attribute_load($attr->aid);
   }
   return $chosen_attr;

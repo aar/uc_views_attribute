@@ -31,7 +31,7 @@ class uc_views_attribute_handler_field_combination extends views_handler_field {
     $i = 1;
     $values = array();
 
-    while ($prod_attr = db_fetch_object($result)) {
+    foreach ($result as $prod_attr) {
       $query_select .= " ao$i.aid AS aid$i, ao$i.name AS name$i, ao$i.oid AS oid$i, po$i.ordering,";
       $query_from .= " ({uc_product_options} AS po$i LEFT JOIN {uc_attribute_options} AS ao$i ON po$i.oid = ao$i.oid AND po$i.nid = %d),";
       $values[] = $nid;
@@ -50,7 +50,7 @@ class uc_views_attribute_handler_field_combination extends views_handler_field {
 
     if ($num_prod_attr) {
       $result = db_query($query_select . $query_from . $query_where . $query_order, $values);
-      while ($row = db_fetch_object($result)) {
+      foreach ($result as $row) {
         $attrs_info = array();
         $attrs = array();
         for ($i = 1 ; $i <= $num_prod_attr ; $i++) {
@@ -71,7 +71,7 @@ class uc_views_attribute_handler_field_combination extends views_handler_field {
     // Exclude configured combinations
     //$result = db_query("SELECT * FROM {uc_product_adjustments} WHERE nid = %d", $nid);
     $result = db_query("SELECT * FROM {uc_product_adjustments} WHERE nid = :nid", array(':nid' => $nid));
-    while ($row = db_fetch_object($result)) {
+    foreach ($result as $row) {
       // TODO: Remove unserialize/asort/serialize because rc6+ already sorts it
       $c = unserialize($row->combination);
       asort($c);

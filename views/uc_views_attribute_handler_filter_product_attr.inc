@@ -23,7 +23,7 @@ class uc_views_attribute_handler_filter_product_attr extends views_handler_filte
       $this->value_title = t('Options');
       $result = db_query("SELECT name, oid FROM {uc_attribute_options} WHERE aid = %d ORDER BY ordering", $aid);
 
-      while ($row = db_fetch_object($result)) {
+      foreach ($result as $row) {
         $options[$row->oid] = $row->name;
       }
       if (count($options) == 0) {
